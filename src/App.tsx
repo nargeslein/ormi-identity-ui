@@ -1,34 +1,48 @@
-import React, { useState } from 'react';
-import './App.css';
-import {authenticateUser} from './DidHelper';
-import Button from "./components/Button";
+import React, { useState } from "react";
+import "./App.scss";
+import { authenticateUser } from "./DidHelper";
+import { Button, Typography } from "@mui/material";
+import StateProvider from "./Context";
+import ProfileMobile from "./Components/ProfileMobile/Content";
+
 function App() {
-  const [did, setDid] = useState('None');
+  const [did, setDid] = useState("None");
 
   const connectDidWallet = () => {
-  authenticateUser().then(
-    (id) => {
-      console.log('ConnectWallet: Connected with DID:', id);
-      setDid(id);
-    },
-    (err) => {
-      console.error('ConnectWallet: Failed to authenticate:', err)
-    }
-  );
-}
+    authenticateUser().then(
+      (id) => {
+        console.log("ConnectWallet: Connected with DID:", id);
+        setDid(id);
+      },
+      (err) => {
+        console.error("ConnectWallet: Failed to authenticate:", err);
+      }
+    );
+  };
+  const [selected, setSelected] = useState(false);
+  const [key, setKey] = useState(0);
+  const toggleSelected = (value: boolean) => {
+    setSelected(value);
+  };
+  const toggleKey = (value: number) => {
+    setKey(value);
+    setSelected(value ? true : false);
+  };
 
   return (
     <>
-      <h4>Connected: {did} </h4>
-      <Button 
-        border="none"
-        color="aqua"
-        height = "200px"
-        onClick={connectDidWallet}
-        radius = "50%"
-        width = "200px"
-        children = "Click to connect your crypto wallet."
-      />
+      <Typography variant="h5" component="body" align="center">
+        Connected: {did}
+      </Typography>
+      ;
+      <Button variant="contained" onClick={connectDidWallet}>
+        Click to connect your crypto wallet
+      </Button>
+      <StateProvider.Provider
+        value={{ selected, key, toggleSelected, toggleKey }}
+      >
+        <ProfileMobile />
+      </StateProvider.Provider>
     </>
   );
 }
