@@ -1,13 +1,18 @@
 import React from "react";
 import Info from "./../Info/Info"
 import "./index.scss";
-function List({Title,...props}) {
+
+interface ListProps {
+    title: string;
+}
+
+const List: React.FC<ListProps> = ({title}) => {
     
     return(
      <div className="dataBox">
          <div className="titleBox">
-                 <h4 className="title">{Title}</h4>
-                 <Info isVisible={false}/>
+                 <h4 className="title">{title}</h4>
+                 <Info/>
          </div>
      </div>
     );

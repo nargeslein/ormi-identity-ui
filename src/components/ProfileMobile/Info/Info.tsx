@@ -1,7 +1,8 @@
 import React, {useContext } from "react";
 import "./info.scss";
 import StateContext from "./../../../Context";
-function Info(props) {
+
+function Info() {
     const State = useContext(StateContext);
     const Content = () => {
         return (

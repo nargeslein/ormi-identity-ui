@@ -20,12 +20,12 @@ function App() {
     );
   };
   const [selected, setSelected] = useState(false);
-  const [key, setKey] = useState(0);
+  const [optionIndex, setIndex] = useState(0);
   const toggleSelected = (value: boolean) => {
     setSelected(value);
   };
-  const toggleKey = (value: number) => {
-    setKey(value);
+  const setOptionIndex = (value: number) => {
+    setIndex(value);
     setSelected(value ? true : false);
   };
 
@@ -39,7 +39,7 @@ function App() {
         Click to connect your crypto wallet
       </Button>
       <StateProvider.Provider
-        value={{ selected, key, toggleSelected, toggleKey }}
+        value={{ selected, optionIndex, toggleSelected, setOptionIndex }}
       >
         <ProfileMobile />
       </StateProvider.Provider>

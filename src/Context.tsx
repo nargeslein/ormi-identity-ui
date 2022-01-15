@@ -2,16 +2,16 @@ import React from 'react'
 
 interface IStateContext {
   selected: boolean;
-  key: number;
+  optionIndex: number;
   toggleSelected: (value: boolean) => void;
-  toggleKey: (key: number) => void
+  setOptionIndex: (optionIndex: number) => void
 }
 
 const defaultStateContext : IStateContext = {
   selected: false,
-  key: 0,
+  optionIndex: 0,
   toggleSelected: () => {console.log("default toggleSelected")},
-  toggleKey: () => {console.log("default toggleKey")}
+  setOptionIndex: () => {console.log("default setOptionIndex")}
 }
 
 const StateContext = React.createContext<IStateContext>(defaultStateContext);

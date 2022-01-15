@@ -1,21 +1,18 @@
-import React, { useState, useEffect, useContext, FC } from "react";
+import React, { useState, useEffect, useContext} from "react";
 import "./index.scss";
 import StateContext from "./../../../Context";
 
 interface OptionProps {
   optionIndex: number;
-  selected: boolean;
-  setSelected: (selected: boolean) => void;
 }
 
-const Option: React.FC<OptionProps> = ({ optionIndex, children, selected }) => {
-  console.log(selected);
+const Option: React.FC<OptionProps> = ({ optionIndex, children}) => {
   const [animation, setAnimation] = useState("");
   const [clear, setClear] = useState(true);
   const State = useContext(StateContext);
   useEffect(() => {
-    if (State.key > 0) {
-      if (State.key !== optionIndex) {
+    if (State.optionIndex > 0) {
+      if (State.optionIndex !== optionIndex) {
         setAnimation("faded");
         setTimeout(() => {
           setClear(false);
@@ -29,13 +26,13 @@ const Option: React.FC<OptionProps> = ({ optionIndex, children, selected }) => {
       setAnimation("");
       setClear(true);
     }
-  }, [State.key, optionIndex]);
+  }, [State.optionIndex, optionIndex]);
   useEffect(() => {
     console.log(State);
   }, [State]);
 
-  const click = (value) => {
-    State.toggleKey(value);
+  const click = (value: number) => {
+    State.setOptionIndex(value);
   };
 
   const ExpandCollapseButton = () => {
@@ -60,7 +57,7 @@ const Option: React.FC<OptionProps> = ({ optionIndex, children, selected }) => {
       </div>
     );
   };
-  return State.key === 0 || clear ? (
+  return State.optionIndex === 0 || clear ? (
     <div
       className={`option fade ${animation}`}
       onClick={() => click(animation === "selected" ? 0 : optionIndex)}
