@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext} from "react";
 import "./index.scss";
-import StateContext from "./../../../Context";
+import StateContext from "../../../Context";
 
 interface OptionProps {
   optionIndex: number;

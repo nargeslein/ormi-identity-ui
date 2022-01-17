@@ -16,3 +16,4 @@ export function createIDX(ceramic: CeramicApi): IDX {
   window.idx = idx
   return idx
 }
+

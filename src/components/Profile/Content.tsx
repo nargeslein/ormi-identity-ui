@@ -5,7 +5,7 @@ import Option from "./Option/Option";
 import InfoCard from "./InfoCard/InfoCard";
 import List from "./List/List";
 
-const ProfileMobile = () => {
+const Profile = () => {
   return (
     <div className="content flex-center">
       <Avatar />
@@ -32,4 +32,4 @@ const ProfileMobile = () => {
   );
 };
 
-export default ProfileMobile;
+export default Profile;

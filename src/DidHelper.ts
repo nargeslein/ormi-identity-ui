@@ -2,6 +2,7 @@ import { DID } from 'dids'
 import type { IDX } from '@ceramicstudio/idx'
 import type { CeramicApi } from '@ceramicnetwork/common'
 import ThreeIdResolver from '@ceramicnetwork/3id-did-resolver'
+import type { BasicProfile }  from '@datamodels/identity-profile-basic'
 import KeyDidResolver from 'key-did-resolver'
 
 import { createCeramic } from './ceramic'
@@ -19,6 +20,11 @@ declare global {
     ceramic?: CeramicApi
   }
 }
+
+// interface IUserProfile {
+//   name: string
+//   description: string
+// }
 
 const ceramicPromise = createCeramic()
 
@@ -43,6 +49,20 @@ export async function ethAddressToDID(address: string): Promise<string> {
     },
   })
   return caip10Doc?.content
+}
+
+export const updateProfile = async () => {
+  const name = "victor fei";
+  const description = "Founder @ Ormi Finance";
+  await window.idx?.set('basicProfile', { name, description })
+}
+
+export const getProfile = async () : Promise<BasicProfile | null> => {
+  try {
+    return await window.idx?.get<BasicProfile>('basicProfile') ?? null;
+  } catch (err) {
+    return null
+  }
 }
 
 // fold in with react components.

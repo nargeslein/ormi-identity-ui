@@ -1,6 +1,6 @@
 import React, {useContext } from "react";
 import "./info.scss";
-import StateContext from "./../../../Context";
+import StateContext from "../../../Context";
 
 function Info() {
     const State = useContext(StateContext);

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./App.scss";
-import { authenticateUser } from "./DidHelper";
+import { authenticateUser, updateProfile } from "./DidHelper";
 import { Button, Typography } from "@mui/material";
 import StateProvider from "./Context";
-import ProfileMobile from "./Components/ProfileMobile/Content";
+import Profile from "./Components/Profile/Content";
 
 function App() {
   const [did, setDid] = useState("None");
@@ -13,6 +13,7 @@ function App() {
       (id) => {
         console.log("ConnectWallet: Connected with DID:", id);
         setDid(id);
+        // await updateProfile();
       },
       (err) => {
         console.error("ConnectWallet: Failed to authenticate:", err);
@@ -41,7 +42,7 @@ function App() {
       <StateProvider.Provider
         value={{ selected, optionIndex, toggleSelected, setOptionIndex }}
       >
-        <ProfileMobile />
+        <Profile />
       </StateProvider.Provider>
     </>
   );
