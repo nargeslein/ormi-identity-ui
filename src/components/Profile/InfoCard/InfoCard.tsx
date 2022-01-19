@@ -9,8 +9,8 @@ interface IUserProfile {
 
 function InfoCard() {
   const [profileData, setProfileData] = React.useState<IUserProfile>({
-    name: "None",
-    description: "None",
+    name: "Default",
+    description: "Default",
   });
   React.useEffect(() => {
     const fetchUserProfile = async () => {
@@ -23,7 +23,7 @@ function InfoCard() {
       setProfileData(profileData);
     };
     fetchUserProfile();
-  }, []);
+  }, [profileData]);
 
   return (
     <div className="infocard">
