@@ -4,6 +4,7 @@ import Avatar from "./Avatar/Avatar";
 import Option from "./Option/Option";
 import InfoCard from "./InfoCard/InfoCard";
 import List from "./List/List";
+import EditProfileDialog from "./EditProfileDialog";
 
 const Profile = () => {
   return (
@@ -11,6 +12,7 @@ const Profile = () => {
       <Avatar />
       <div className={"white-container"}></div>
       <div className="main">
+        <EditProfileDialog /> 
         <InfoCard />
         <div className="box">
           <div className="loginState"></div>

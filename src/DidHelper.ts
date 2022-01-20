@@ -8,6 +8,7 @@ import { AccountID } from "caip";
 import { createCeramic } from "./ceramic";
 import { createIDX } from "./Idx";
 import { getProvider } from "./Wallet";
+import { StreamID } from "@ceramicnetwork/streamid";
 
 // Commented out for using glazed. Note: glaze did not quite work.
 // import type { Manager } from '@3id/manager';
@@ -62,10 +63,11 @@ export async function ethAddressToDID(address: string): Promise<string> {
   return caip10Doc?.content;
 }
 
-export const updateProfile = async () => {
-  const name = "victor fei";
-  const description = "Founder @ Ormi Finance";
-  await window.idx?.set("basicProfile", { name, description });
+export const updateProfile = async (
+  name: string,
+  description: string
+): Promise<StreamID | null> => {
+  return (await window.idx?.set("basicProfile", { name, description })) ?? null;
 };
 
 export const getProfile = async (): Promise<BasicProfile | null> => {

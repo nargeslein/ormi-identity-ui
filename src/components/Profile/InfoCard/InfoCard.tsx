@@ -14,7 +14,7 @@ function InfoCard() {
   });
   React.useEffect(() => {
     const fetchUserProfile = async () => {
-      await updateProfile();
+      // await updateProfile();
       const userProfile = await getProfile();
       const profileData: IUserProfile = {
         name: userProfile?.name ?? "None",
